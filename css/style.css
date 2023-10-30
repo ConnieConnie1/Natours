@@ -1,160 +1,136 @@
-/*
-COLORS:
-
-Light green: #7ed56f
-Medium green: #55c57a
-Dark green: #28b485
-
-*/
-
+@charset "UTF-8";
 *,
 *::before,
-*::after { /*  Il pseudo-elemento consentono di inserire contenuto HTML prima/dopo il contenuto dell'elemento principale.*/
-    margin:0;
-    padding: 0;
-    box-sizing: border-box;
-    /*dimensioni complessive dell'elemento includeranno il padding e il bordo */
-}
+*::after {
+  /*  Il pseudo-elemento consentono di inserire contenuto HTML prima/dopo il contenuto dell'elemento principale.*/
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /*dimensioni complessive dell'elemento includeranno il padding e il bordo */ }
 
 html {
-    font-size: 10px; /*Importo la 'root' dimensione del font nel tag HTML, posso così usare dimensioni relative nel resto del file.*/
-} 
+  font-size: 10px;
+  /*Importo la 'root' dimensione del font nel tag HTML, posso così usare dimensioni relative nel resto del file.*/ }
 
 /* Impostazioni font*/
 body {
-     font-family: "Lato", sans-serif;
-     font-weight: 400;
-     font-size: 1.6rem;
-     line-height: 1.7;
-     color: #777;
-     padding: 3rem;
-}
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: #777;
+  padding: 3rem; }
 
 /* Impostazioni header*/
 .header {
-    height: 95vh;
-    background-image: linear-gradient(
-        to right bottom,
-    rgba(126,213,111,0.8),
-    rgba(40,180,131,0.8)),
-    url(../img/hero.jpg); /* Per inserire un'immagine di background nell'header. Abbiamo nello strato sopra il gradiente e nel livello sotto l'immagine vera e propria*/
-    background-size: cover; /* l'immagine di sfondo viene ridimensionata per coprire l'intera area dell'elemento in modo proporzionale*/
-    background-position: top; /* Rimane ancorato sopra*/
-    clip-path: polygon(0 0,100% 0, 100% 75vh, 0 100%) ;/*Parto da in alto a sinistra in senso orario*/
-    position: relative; /* il figlio logo-box prenderò header come origine da cui contare */
-}
+  height: 95vh;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  /* Per inserire un'immagine di background nell'header. Abbiamo nello strato sopra il gradiente e nel livello sotto l'immagine vera e propria*/
+  background-size: cover;
+  /* l'immagine di sfondo viene ridimensionata per coprire l'intera area dell'elemento in modo proporzionale*/
+  background-position: top;
+  /* Rimane ancorato sopra*/
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  /*Parto da in alto a sinistra in senso orario*/
+  position: relative;
+  /* il figlio logo-box prenderò header come origine da cui contare */ }
 
 /* LOGO */
+.header__logo-box {
+  position: absolute;
+  /* La posizione da cui inizia a contare i pixel è quella della madre, in questo caso header, che deve aver come posizione relative, e il figlio posizione absolute*/
+  top: 4rem;
+  left: 4rem; }
 
-.logo-box {
-position: absolute; /* La posizione da cui inizia a contare i pixel è quella della madre, in questo caso header, che deve aver come posizione relative, e il figlio posizione absolute*/
-top: 4rem; 
-left: 4rem;
-}
-.logo {
-    height: 2.5rem; /*La larghezza verrà automaticamente dal browser a partire dall'altezza data */
-}
+.header__logo {
+  height: 2.5rem;
+  /*La larghezza verrà automaticamente dal browser a partire dall'altezza data */ }
 
 /* Scritte nell'header */
-.text-box {
-    position: absolute;
-    top: 50%; /*In relazione all'elemento padre */
-    left: 50%;
-    transform: translate(-50%,-50%); /*In relazione all'elemento stesso.Trasla l'elemento, in questo caso verso alto a sinistra, è negativo sull'asse x e y, quindi in questo modo posso centrare perfettamente il testo all'interno dell'header. */
-    text-align: center;
-}
+.header__text-box {
+  position: absolute;
+  top: 50%;
+  /*In relazione all'elemento padre */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /*In relazione all'elemento stesso.Trasla l'elemento, in questo caso verso alto a sinistra, è negativo sull'asse x e y, quindi in questo modo posso centrare perfettamente il testo all'interno dell'header. */
+  text-align: center; }
+
 .heading-primary {
-color: #fff;
-text-transform: uppercase;
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  /*Questo si mette come fix a piccoli errori nell'animazione sull'asse */
+  margin-bottom: 6rem; }
 
-backface-visibility: hidden; /*Questo si mette come fix a piccoli errori nell'animazione sull'asse */
-margin-bottom: 6rem;
-}
-
-.heading-primary-main {
-    display: block;
-    font-size: 6rem;
-    font-weight: 400;
-    letter-spacing: 3.5rem;
-
-    animation-name: moveInLeft; /*Richiamo il keyframe animazione che ho creato sotto*/
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
-   
-
-    /*Altre cose che si possono fare con animation:
+.heading-primary--main {
+  display: block;
+  font-size: 6rem;
+  font-weight: 400;
+  letter-spacing: 3.5rem;
+  animation-name: moveInLeft;
+  /*Richiamo il keyframe animazione che ho creato sotto*/
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  /*Altre cose che si possono fare con animation:
     animation-delay: 3s;
      animation-iteration-count: 3;
     
-    */
-}
+    */ }
 
-.heading-primary-sub {
-    display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1.74rem;
-    /* Aggiungo animazione */
-    animation-name: moveInRight;
-    animation-duration: 1s;
-    
-}
+.heading-primary--sub {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1.74rem;
+  /* Aggiungo animazione */
+  animation-name: moveInRight;
+  animation-duration: 1s; }
+
 /*  definire uno stato specifico di un'animazione in un punto temporale specifico. Un keyframe definisce una serie di istruzioni CSS che specificano come un elemento HTML dovrebbe apparire */
 @keyframes moveInLeft {
-    /* Fase iniziale animazione */
-    0%{
-        opacity: 0; 
-        transform: translateX(-10rem);/*Traslo sull'asse delle X, verso sinistra*/
-
-    }
-     /* Fase intermedia animazione */
-     80%{
-        transform: translateX(1rem);
-        }    
-    /* Fase finale animazione */
-    100% {
+  /* Fase iniziale animazione */
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+    /*Traslo sull'asse delle X, verso sinistra*/ }
+  /* Fase intermedia animazione */
+  80% {
+    transform: translateX(1rem); }
+  /* Fase finale animazione */
+  100% {
     opacity: 1;
-    transform: translate(0);
-    }
-}   
+    transform: translate(0); } }
+
 @keyframes moveInRight {
-    /* Fase iniziale animazione */
-    0%{
-        opacity: 0; 
-        transform: translateX(10rem);/*Traslo sull'asse delle X, verso sinistra*/
-
-    }
-     /* Fase intermedia animazione */
-     80%{
-        transform: translateX(-1rem);
-        }    
-    /* Fase finale animazione */
-    100% {
+  /* Fase iniziale animazione */
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+    /*Traslo sull'asse delle X, verso sinistra*/ }
+  /* Fase intermedia animazione */
+  80% {
+    transform: translateX(-1rem); }
+  /* Fase finale animazione */
+  100% {
     opacity: 1;
-    traform: translate(0);
-    }
-}
+    traform: translate(0); } }
 
 @keyframes moveInBottom {
-    /* Fase iniziale animazione */
-    0%{
-        opacity: 0; 
-        transform: translateY(3rem);/*Traslo sull'asse delle X, verso sinistra*/
-
-    }
-     /* Fase intermedia animazione */
-     80%{
-        transform: translateY(-1rem);
-        }    
-    /* Fase finale animazione */
-    100% {
+  /* Fase iniziale animazione */
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+    /*Traslo sull'asse delle X, verso sinistra*/ }
+  /* Fase intermedia animazione */
+  80% {
+    transform: translateY(-1rem); }
+  /* Fase finale animazione */
+  100% {
     opacity: 1;
-    traform: translate(0);
-    }
-}
+    traform: translate(0); } }
 
 /*BOTTONI*/
-
 /* Preuso classi: per stilizzare gli elenti in condizioni particolari*/
 /* 
 link: è un link non visitati
@@ -163,54 +139,60 @@ hover: quando ci passi sopra col mouse
 active: quando lo clicchi
 */
 .btn:link, .btn:visited {
-text-transform: uppercase;
-text-decoration: none;
-padding: 1.5rem 4rem;
-display: inline-block; /* così funziona come se fosse elemento di blocco*/
-border-radius: 10rem;
-transition: all .2s; /*tutte le proprietà posso essere animate, in tot secondi */
-position: relative; /*Così il bottone after può prendere questo come riferimento di posizione */
-}
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  /* così funziona come se fosse elemento di blocco*/
+  border-radius: 10rem;
+  transition: all .2s;
+  /*tutte le proprietà posso essere animate, in tot secondi */
+  position: relative;
+  /*Così il bottone after può prendere questo come riferimento di posizione */ }
+
 .btn:hover {
-transform: translateY(-3px); /*Così su muove in su*/
-/*box-shadow: orizzontale verticale sfocato raggio */
-box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2); /*Ombra nera con 20% di opacità*/
-}
+  transform: translateY(-3px);
+  /*Così su muove in su*/
+  /*box-shadow: orizzontale verticale sfocato raggio */
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  /*Ombra nera con 20% di opacità*/ }
+
 .btn:active {
-    transform: translateY(-1px); /*Così quando clicchiamo dopo hover, si abbassa un po'*/
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);   /*diminuindo sfocatore e raggio dell'ombra, sembra abbassarsi, quindi avvicinarsi sul foglio*/ 
-}
-    
-    
+  transform: translateY(-1px);
+  /*Così quando clicchiamo dopo hover, si abbassa un po'*/
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  /*diminuindo sfocatore e raggio dell'ombra, sembra abbassarsi, quindi avvicinarsi sul foglio*/ }
 
-.btn-white {
-    background-color: #fff;
-    color:#777;
-}
-.btn::after{ /*Dopo pseudo classe*/
-    /* Creiamo un elento uguale al nostro bottone, da mettere dietro*/
-    content:"" ; /*Dobbiamo dichiarlo, anche se vuoto*/
-    display: inline-block;
-    height: 100%;
-    width: 100%;
-    border-radius: 10rem;
-    position: absolute;
-    top: 0; /*il suo elemento di riferimento imposto che sia il bottone, mettendo posizione relative al bottone */
-    left:0;
-    z-index: -1; /*così è SOTTO */
-    transition: all .4s;
+.btn--white {
+  background-color: #fff;
+  color: #777; }
 
-}
-.btn-white::after{
-    background-color: #fff;
-}
+.btn::after {
+  /*Dopo pseudo classe*/
+  /* Creiamo un elento uguale al nostro bottone, da mettere dietro*/
+  content: "";
+  /*Dobbiamo dichiarlo, anche se vuoto*/
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;
+  top: 0;
+  /*il suo elemento di riferimento imposto che sia il bottone, mettendo posizione relative al bottone */
+  left: 0;
+  z-index: -1;
+  /*così è SOTTO */
+  transition: all .4s; }
+
+.btn-white::after {
+  background-color: #fff; }
 
 .btn:hover:after {
-    transform: scaleX(1.4) scaleY(1.6);
-    opacity: 0; /*Così farà un fade-out */
-}
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+  /*Così farà un fade-out */ }
 
-.btn-animated {
-    animation: moveInBottom .5s ease-out .75s;
-    animation-fill-mode: backwards; /*Mette in automatico i valori a zero iniziali*/
-}
+.btn--animated {
+  animation: moveInBottom .5s ease-out .75s;
+  animation-fill-mode: backwards;
+  /*Mette in automatico i valori a zero iniziali*/ }
