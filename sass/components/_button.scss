@@ -1,0 +1,67 @@
+/*BOTTONI*/
+
+/* Preuso classi: per stilizzare gli elenti in condizioni particolari*/
+/* 
+link: è un link non visitati
+visited: quando l'ho già visitato
+hover: quando ci passi sopra col mouse
+active: quando lo clicchi
+*/
+.btn {
+    &:link,
+    &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block; /* così funziona come se fosse elemento di blocco*/
+    border-radius: 10rem;
+    transition: all .2s; /*tutte le proprietà posso essere animate, in tot secondi */
+    position: relative; /*Così il bottone after può prendere questo come riferimento di posizione */
+    }
+    &:hover {
+    transform: translateY(-3px); /*Così su muove in su*/
+    /*box-shadow: orizzontale verticale sfocato raggio */
+    box-shadow: 0 1rem 2rem rgba($color-black, .2); /*Ombra nera con 20% di opacità*/
+        &:after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0; /*Così farà un fade-out */
+        } 
+
+    }
+
+    &:active {
+        transform: translateY(-1px); /*Così quando clicchiamo dopo hover, si abbassa un po'*/
+        box-shadow: 0 .5rem 1rem rgba($color-black, .2);   /*diminuindo sfocatore e raggio dell'ombra, sembra abbassarsi, quindi avvicinarsi sul foglio*/ 
+    }
+        
+        
+
+    &--white {
+        background-color: $color-white;
+        color:$color-grey-dark;
+
+        &::after{
+            background-color: $color-white;
+        }
+    }
+    &::after{ /*Dopo pseudo classe*/
+        /* Creiamo un elento uguale al nostro bottone, da mettere dietro*/
+        content:"" ; /*Dobbiamo dichiarlo, anche se vuoto*/
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0; /*il suo elemento di riferimento imposto che sia il bottone, mettendo posizione relative al bottone */
+        left:0;
+        z-index: -1; /*così è SOTTO */
+        transition: all .4s;
+
+    }
+    
+
+    &--animated {
+        animation: moveInBottom .5s ease-out .75s;
+        animation-fill-mode: backwards; /*Mette in automatico i valori a zero iniziali*/
+    }
+}

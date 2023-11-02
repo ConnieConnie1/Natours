@@ -1,13 +1,4 @@
 @charset "UTF-8";
-*,
-*::before,
-*::after {
-  /*  Il pseudo-elemento consentono di inserire contenuto HTML prima/dopo il contenuto dell'elemento principale.*/
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  /*dimensioni complessive dell'elemento includeranno il padding e il bordo */ }
-
 html {
   font-size: 10px;
   /*Importo la 'root' dimensione del font nel tag HTML, posso così usare dimensioni relative nel resto del file.*/ }
@@ -21,71 +12,220 @@ body {
   color: #777;
   padding: 3rem; }
 
-/* Impostazioni header*/
-.header {
-  height: 95vh;
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
-  /* Per inserire un'immagine di background nell'header. Abbiamo nello strato sopra il gradiente e nel livello sotto l'immagine vera e propria*/
-  background-size: cover;
-  /* l'immagine di sfondo viene ridimensionata per coprire l'intera area dell'elemento in modo proporzionale*/
-  background-position: top;
-  /* Rimane ancorato sopra*/
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  /*Parto da in alto a sinistra in senso orario*/
-  position: relative;
-  /* il figlio logo-box prenderò header come origine da cui contare */ }
-
-/* LOGO */
-.header__logo-box {
-  position: absolute;
-  /* La posizione da cui inizia a contare i pixel è quella della madre, in questo caso header, che deve aver come posizione relative, e il figlio posizione absolute*/
-  top: 4rem;
-  left: 4rem; }
-
-.header__logo {
-  height: 2.5rem;
-  /*La larghezza verrà automaticamente dal browser a partire dall'altezza data */ }
-
-/* Scritte nell'header */
-.header__text-box {
-  position: absolute;
-  top: 50%;
-  /*In relazione all'elemento padre */
-  left: 50%;
-  transform: translate(-50%, -50%);
-  /*In relazione all'elemento stesso.Trasla l'elemento, in questo caso verso alto a sinistra, è negativo sull'asse x e y, quindi in questo modo posso centrare perfettamente il testo all'interno dell'header. */
-  text-align: center; }
-
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
   backface-visibility: hidden;
   /*Questo si mette come fix a piccoli errori nell'animazione sull'asse */
   margin-bottom: 6rem; }
+  .heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    /*Richiamo il keyframe animazione che ho creato sotto*/
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    /*Altre cose che si possono fare con animation:
+        animation-delay: 3s;
+         animation-iteration-count: 3;
+        
+        */ }
+  .heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.74rem;
+    /* Aggiungo animazione */
+    animation-name: moveInRight;
+    animation-duration: 1s; }
 
-.heading-primary--main {
-  display: block;
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 3.5rem;
-  animation-name: moveInLeft;
-  /*Richiamo il keyframe animazione che ho creato sotto*/
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-  /*Altre cose che si possono fare con animation:
-    animation-delay: 3s;
-     animation-iteration-count: 3;
-    
-    */ }
-
-.heading-primary--sub {
-  display: block;
-  font-size: 2rem;
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
   font-weight: 700;
-  letter-spacing: 1.74rem;
-  /* Aggiungo animazione */
-  animation-name: moveInRight;
-  animation-duration: 1s; }
+  display: inline-block;
+  background-image: linear-gradient(to right, #7ed56f, #28b485);
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 2px;
+  transition: all .2s; }
+  .heading-secondary:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2); }
+
+.heading-tertiary {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase; }
+
+.paragraph {
+  font-size: 1.6rem; }
+  .paragraph:not(:last-child) {
+    margin-bottom: 3rem; }
+
+.u-center-text {
+  text-align: center; }
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem; }
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem; }
+
+.u-margin-bottom-small {
+  margin-bottom: 2rem; }
+
+/*BOTTONI*/
+/* Preuso classi: per stilizzare gli elenti in condizioni particolari*/
+/* 
+link: è un link non visitati
+visited: quando l'ho già visitato
+hover: quando ci passi sopra col mouse
+active: quando lo clicchi
+*/
+.btn:link, .btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  /* così funziona come se fosse elemento di blocco*/
+  border-radius: 10rem;
+  transition: all .2s;
+  /*tutte le proprietà posso essere animate, in tot secondi */
+  position: relative;
+  /*Così il bottone after può prendere questo come riferimento di posizione */ }
+
+.btn:hover {
+  transform: translateY(-3px);
+  /*Così su muove in su*/
+  /*box-shadow: orizzontale verticale sfocato raggio */
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  /*Ombra nera con 20% di opacità*/ }
+  .btn:hover:after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+    /*Così farà un fade-out */ }
+
+.btn:active {
+  transform: translateY(-1px);
+  /*Così quando clicchiamo dopo hover, si abbassa un po'*/
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  /*diminuindo sfocatore e raggio dell'ombra, sembra abbassarsi, quindi avvicinarsi sul foglio*/ }
+
+.btn--white {
+  background-color: #fff;
+  color: #777; }
+  .btn--white::after {
+    background-color: #fff; }
+
+.btn::after {
+  /*Dopo pseudo classe*/
+  /* Creiamo un elento uguale al nostro bottone, da mettere dietro*/
+  content: "";
+  /*Dobbiamo dichiarlo, anche se vuoto*/
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;
+  top: 0;
+  /*il suo elemento di riferimento imposto che sia il bottone, mettendo posizione relative al bottone */
+  left: 0;
+  z-index: -1;
+  /*così è SOTTO */
+  transition: all .4s; }
+
+.btn--animated {
+  animation: moveInBottom .5s ease-out .75s;
+  animation-fill-mode: backwards;
+  /*Mette in automatico i valori a zero iniziali*/ }
+
+.row {
+  max-width: 114rem;
+  margin: 0 auto; }
+  .row:not(:last-child) {
+    margin-bottom: 8rem; }
+    @media only screen and (max-width: 56.25em) {
+      .row:not(:last-child) {
+        margin-bottom: 6rem; } }
+  @media only screen and (max-width: 56.25em) {
+    .row {
+      max-width: 50rem;
+      padding: 0 3rem; } }
+  .row::after {
+    content: "";
+    display: table;
+    clear: both; }
+  .row [class^="col-"] {
+    float: left; }
+    .row [class^="col-"]:not(:last-child) {
+      margin-right: 6rem; }
+      @media only screen and (max-width: 56.25em) {
+        .row [class^="col-"]:not(:last-child) {
+          margin-right: 0;
+          margin-bottom: 6rem; } }
+    @media only screen and (max-width: 56.25em) {
+      .row [class^="col-"] {
+        width: 100% !important; } }
+  .row .col-1-of-2 {
+    width: calc((100% - 6rem) / 2); }
+  .row .col-1-of-3 {
+    width: calc((100% - 2 * 6rem) / 3); }
+  .row .col-2-of-3 {
+    width: calc(2 * ((100% - 2 * 6rem) / 3) + 6rem); }
+  .row .col-1-of-4 {
+    width: calc((100% - 3 * 6rem) / 4); }
+  .row .col-2-of-4 {
+    width: calc(2 * ((100% - 3 * 6rem) / 4) + 6rem); }
+  .row .col-3-of-4 {
+    width: calc(3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem); }
+
+.header {
+  height: 95vh;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero-small.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative; }
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+    .header {
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+      height: 95vh; } }
+  @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), only screen and (min-width: 125em) {
+    .header {
+      background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg); } }
+  @media only screen and (max-width: 37.5em) {
+    .header {
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); } }
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
+    height: 3.5rem; }
+  .header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; }
+
+.section-about {
+  background-color: #f7f7f7;
+  padding: 25rem 0;
+  margin-top: -20vh; }
+
+*,
+*::before,
+*::after {
+  /*  Il pseudo-elemento consentono di inserire contenuto HTML prima/dopo il contenuto dell'elemento principale.*/
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /*dimensioni complessive dell'elemento includeranno il padding e il bordo */ }
 
 /*  definire uno stato specifico di un'animazione in un punto temporale specifico. Un keyframe definisce una serie di istruzioni CSS che specificano come un elemento HTML dovrebbe apparire */
 @keyframes moveInLeft {
@@ -129,70 +269,3 @@ body {
   100% {
     opacity: 1;
     traform: translate(0); } }
-
-/*BOTTONI*/
-/* Preuso classi: per stilizzare gli elenti in condizioni particolari*/
-/* 
-link: è un link non visitati
-visited: quando l'ho già visitato
-hover: quando ci passi sopra col mouse
-active: quando lo clicchi
-*/
-.btn:link, .btn:visited {
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1.5rem 4rem;
-  display: inline-block;
-  /* così funziona come se fosse elemento di blocco*/
-  border-radius: 10rem;
-  transition: all .2s;
-  /*tutte le proprietà posso essere animate, in tot secondi */
-  position: relative;
-  /*Così il bottone after può prendere questo come riferimento di posizione */ }
-
-.btn:hover {
-  transform: translateY(-3px);
-  /*Così su muove in su*/
-  /*box-shadow: orizzontale verticale sfocato raggio */
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-  /*Ombra nera con 20% di opacità*/ }
-
-.btn:active {
-  transform: translateY(-1px);
-  /*Così quando clicchiamo dopo hover, si abbassa un po'*/
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-  /*diminuindo sfocatore e raggio dell'ombra, sembra abbassarsi, quindi avvicinarsi sul foglio*/ }
-
-.btn--white {
-  background-color: #fff;
-  color: #777; }
-
-.btn::after {
-  /*Dopo pseudo classe*/
-  /* Creiamo un elento uguale al nostro bottone, da mettere dietro*/
-  content: "";
-  /*Dobbiamo dichiarlo, anche se vuoto*/
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  border-radius: 10rem;
-  position: absolute;
-  top: 0;
-  /*il suo elemento di riferimento imposto che sia il bottone, mettendo posizione relative al bottone */
-  left: 0;
-  z-index: -1;
-  /*così è SOTTO */
-  transition: all .4s; }
-
-.btn-white::after {
-  background-color: #fff; }
-
-.btn:hover:after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
-  /*Così farà un fade-out */ }
-
-.btn--animated {
-  animation: moveInBottom .5s ease-out .75s;
-  animation-fill-mode: backwards;
-  /*Mette in automatico i valori a zero iniziali*/ }
