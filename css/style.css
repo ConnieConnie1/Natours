@@ -1,4 +1,19 @@
 @charset "UTF-8";
+*,
+*::before,
+*::after {
+  /*  Il pseudo-elemento consentono di inserire contenuto HTML prima/dopo il contenuto dell'elemento principale.*/
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /*dimensioni complessive dell'elemento includeranno il padding e il bordo */ }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  box-sizing: border-box; }
+
 html {
   font-size: 10px;
   /*Importo la 'root' dimensione del font nel tag HTML, posso così usare dimensioni relative nel resto del file.*/ }
@@ -75,7 +90,7 @@ body {
   margin-bottom: 4rem; }
 
 .u-margin-bottom-small {
-  margin-bottom: 2rem; }
+  margin-bottom: 1.5rem; }
 
 /*BOTTONI*/
 /* Preuso classi: per stilizzare gli elenti in condizioni particolari*/
@@ -86,6 +101,7 @@ hover: quando ci passi sopra col mouse
 active: quando lo clicchi
 */
 .btn:link, .btn:visited {
+  font-size: 1.6rem;
   text-transform: uppercase;
   text-decoration: none;
   padding: 1.5rem 4rem;
@@ -141,6 +157,58 @@ active: quando lo clicchi
   animation: moveInBottom .5s ease-out .75s;
   animation-fill-mode: backwards;
   /*Mette in automatico i valori a zero iniziali*/ }
+
+.btn-text:link, .btn-text:visited {
+  font-size: 1.6rem;
+  color: #55c57a;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid #55c57a;
+  padding: 3px;
+  transition: all .2s; }
+
+.btn-text:hover {
+  background-color: #55c57a;
+  color: #fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px); }
+
+.btn-text:active {
+  box-shadow: 0 1rem 0.5rem rgba(0, 0, 0, 0.15);
+  transform: translateY(0); }
+
+.composition {
+  position: relative; }
+  .composition__photo {
+    width: 55%;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+    border-radius: 2px;
+    position: absolute;
+    z-index: 1;
+    transition: all .2s;
+    outline-offset: 2rem; }
+    @media only screen and (max-width: 56.25em) {
+      .composition__photo {
+        float: left;
+        position: relative;
+        width: 33.33333333%;
+        box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.2); } }
+    .composition__photo--p1 {
+      left: 0;
+      top: -2rem; }
+    .composition__photo--p2 {
+      right: 0;
+      top: 2rem; }
+    .composition__photo--p3 {
+      left: 20%;
+      top: 10rem; }
+    .composition__photo:hover {
+      transform: scale(1.05) translateY(5px);
+      box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5);
+      z-index: 2;
+      outline: 0.2rem solid #55c57a; }
+  .composition:hover .composition__photo:not(:hover) {
+    transform: scale(0.9); }
 
 .row {
   max-width: 114rem;
@@ -217,15 +285,6 @@ active: quando lo clicchi
   background-color: #f7f7f7;
   padding: 25rem 0;
   margin-top: -20vh; }
-
-*,
-*::before,
-*::after {
-  /*  Il pseudo-elemento consentono di inserire contenuto HTML prima/dopo il contenuto dell'elemento principale.*/
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  /*dimensioni complessive dell'elemento includeranno il padding e il bordo */ }
 
 /*  definire uno stato specifico di un'animazione in un punto temporale specifico. Un keyframe definisce una serie di istruzioni CSS che specificano come un elemento HTML dovrebbe apparire */
 @keyframes moveInLeft {

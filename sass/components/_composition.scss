@@ -1,0 +1,41 @@
+// stile per la composizione delle foto
+.composition {
+    position: relative;
+    &__photo {
+        width: 55%; // percentuale ottimo per la responsività, così le immagini si adattano alla pagina!
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .4);
+        border-radius: 2px;
+        position: absolute; //genitore è il riferimento per la composizione
+        z-index: 1;
+        transition: all .2s;
+        outline-offset: 2rem; // ci dà lo spazio tra bordo e autoline in hover
+       
+        @include respond(tab-port) {
+            float: left;
+            position: relative;
+            width: 33.33333333%;
+            box-shadow: 0 1.5rem 3rem rgba($color-black, .2);
+        }
+    &--p1{
+     left: 0;
+     top: -2rem; //un po' più in alto
+    }
+    &--p2{
+        right: 0;
+        top: 2rem;
+    }
+    &--p3{
+        left: 20%;
+        top: 10rem;
+    }
+    &:hover{
+        transform: scale(1.05) translateY(5px);
+        box-shadow: 0 2.5rem 4rem rgba($color-black, .5); // ombra un po' più grande del suo stato normale
+        z-index: 2; // è maggiore di quello di partenza
+        outline: .2rem solid $color-primary; // bordo
+    }
+    }
+    &:hover &__photo:not(:hover){ // questo selezione la foto che non è in hover
+transform: scale(.9);
+    }
+}
