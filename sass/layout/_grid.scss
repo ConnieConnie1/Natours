@@ -9,9 +9,9 @@
             margin-bottom: $gutter-vertical-small;
         }
     }
-    
+
     @include respond(tab-port) {
-        max-width: 50rem;
+        max-width: 50rem; // riduco max width rispetto a .row
         padding: 0 3rem;
     }
 
@@ -24,19 +24,19 @@
             margin-right: $gutter-horizontal;
 
             @include respond(tab-port) {
-                margin-right: 0;
-                margin-bottom: $gutter-vertical-small;
+                margin-right: 0; // tolgo il margine
+                margin-bottom: $gutter-vertical-small; //cambiando la direzione cambia anche dove mi serve il margine
             }
         }
 
         @include respond(tab-port) {
-            width: 100% !important;
+            width: 100% !important; // La larghezza rimane fissa
         }
     }
 
     .col-1-of-2 {
         width: calc((100% - #{$gutter-horizontal}) / 2);
-        
+
     }
 
     .col-1-of-3 {

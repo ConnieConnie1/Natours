@@ -8,6 +8,7 @@
     background-size: cover;
     background-position: top;
     position: relative;
+
     
 
     @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
@@ -26,9 +27,9 @@
         url(../img/hero.jpg);
     }
 
-    @include respond(phone) {
+    @include respond(phone) { // cambio l'inclinazione del poligono su telefono
         -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
-        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); 
     }
 
     &__logo-box {

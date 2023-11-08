@@ -6,12 +6,21 @@
     }
 }
 
+
+// MEDIA QUERY MANAGER
+// Mobile: 0-600px
+// Tablet portrait : 600-900px
+// Tablet landscape: 900-1200px
+// Desktop grandi (più degli schermi normali): 1800px sopra
+
+// Varia in base alle scelte
+
 @mixin respond($breakpoint) {
-    @if $breakpoint == phone {
-        @media only screen and (max-width: 37.5em) { @content };    //600px
+    @if $breakpoint == phone { // IF direttiva
+        @media only screen and (max-width: 37.5em) { @content };    //600px @content ci permette di passare del codice all'interno di un minix
     }
     @if $breakpoint == tab-port {
-        @media only screen and (max-width: 56.25em) { @content };     //900px
+        @media only screen and (max-width: 56.25em) { @content };     //900px tablet portrait
     }
     @if $breakpoint == tab-land {
         @media only screen and (max-width: 75em) { @content };    //1200px
@@ -20,3 +29,9 @@
         @media only screen and (min-width: 112.5em) { @content };    //1800
     }
 }
+
+// Conversione da pix a unità relativa
+
+// Usiamo EM migliori opzioni per media queries
+
+// 1em = 16 px

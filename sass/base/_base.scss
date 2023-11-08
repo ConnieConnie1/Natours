@@ -1,16 +1,44 @@
 *,
 *::before,
-*::after { /*  Il pseudo-elemento consentono di inserire contenuto HTML prima/dopo il contenuto dell'elemento principale.*/
-    margin:0;
+*::after {
+    /*  Il pseudo-elemento consentono di inserire contenuto HTML prima/dopo il contenuto dell'elemento principale.*/
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     /*dimensioni complessive dell'elemento includeranno il padding e il bordo */
 }
 
 html {
-    font-size: 62.5%;;
+    font-size: 62.5%; // 1 rem = 10px
+
+    // MEDIA QUERIES
+
+    // viene in automatico passata la parte @content
+    // Definisce quanto è un EM
+    // Non mi serve quello per phone, perché non voglio scendere sotto gli
+    
+    // L'ordine in cui le metto, conta
+   
+
+    @include respond(tab-land) {
+        font-size: 56; // 1rem = 9px
+    }
+
+    @include respond(tab-port) {
+        font-size: 50%; // 1rem/ 8px
+    }
+
+    @include respond(big-desktop) {
+        font-size: 75%; // 1rem = 12px
+    }
+
 }
 
-body{
+body {
     box-sizing: border-box;
+    padding: 3rem;
+    
+    @include respond(tab-port) {
+        padding: 0; 
+    }
 }
